@@ -226,9 +226,9 @@ tracks/1/keys = {
 "values": [ Rect2( 0, 0, 32, 32 ), Rect2( 32, 0, 32, 32 ), Rect2( 64, 0, 32, 32 ), Rect2( 96, 0, 32, 32 ), Rect2( 128, 0, 32, 32 ), Rect2( 160, 0, 32, 32 ), Rect2( 192, 0, 32, 32 ), Rect2( 224, 0, 32, 32 ) ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
-position = Vector2( 343.053, 352.81 )
+position = Vector2( 344.314, 345.247 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -247,6 +247,7 @@ wall_friction = 3.0
 have_pickaxe = true
 dig_depth = 50
 dig_width = 15
+pickaxe_strengh = 1
 
 [node name="PickAxe" type="Node2D" parent="." index="0"]
 
@@ -304,30 +305,30 @@ _sections_unfolded = [ "Pause", "Playback Options" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="4"]
 
-position = Vector2( 19.4732, 3.97491 )
+position = Vector2( 4.6587, 1.36109 )
 anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 0.8, 0.8 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
+limit_left = 0
+limit_top = -36398080
+limit_right = 5000
 limit_bottom = 10000000
-limit_smoothed = false
+limit_smoothed = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
+drag_margin_left = 0.13
+drag_margin_top = 0.13
+drag_margin_right = 0.06
+drag_margin_bottom = 0.13
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
-_sections_unfolded = [ "Editor" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }

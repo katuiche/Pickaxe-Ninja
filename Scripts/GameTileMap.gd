@@ -18,7 +18,6 @@ func _ready():
 
 
 func clear_area(pos_x1, pos_y1, pos_x2, pos_y2, damage):
-	canvas.draw_rect(Rect2(Vector2(pos_x1,pos_y1),Vector2(pos_x2,pos_y2)), Color(1.0,0.0,0.0))
 	for x in range(pos_x1, pos_x2,cell_size.x): 
 		for y in range(pos_y1, pos_y2,cell_size.y):
 			set_cellv(world_to_map(Vector2(x, y)), -1)

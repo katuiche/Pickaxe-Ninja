@@ -9,7 +9,8 @@ export (float, 1, 5) var wall_friction
 export (bool) var have_pickaxe
 export (int, 0, 300) var dig_depth
 export (int, 5, 40) var dig_width
- 
+export (int, 1, 5) var pickaxe_strengh 
+
 onready var anim_player = $PlayerAnimation
 onready var sprite = $PlayerSprite
 onready var pickaxe = $PickAxe
@@ -123,7 +124,7 @@ func movement():
 
 		
 func dig():
-	if Input.is_action_just_pressed("dig"):
+	if Input.is_action_just_pressed("dig") and have_pickaxe:
 		var direction = 0
 		if Input.is_action_pressed("move_up"):
 			direction = 90
@@ -133,10 +134,10 @@ func dig():
 			direction = 180
 			
 		match direction:
-			0: emit_signal("clear_tiles", global_position.x, global_position.y-dig_width, global_position.x+dig_depth, global_position.y+dig_width)
-			90: emit_signal("clear_tiles", global_position.x-dig_width, global_position.y-dig_depth, global_position.x+dig_width, global_position.y)
-			180: emit_signal("clear_tiles", global_position.x-dig_depth, global_position.y-dig_width, global_position.x, global_position.y+dig_width)
-			270: emit_signal("clear_tiles", global_position.x-dig_width, global_position.y, global_position.x+dig_width, global_position.y+dig_depth) 
+			0: emit_signal("clear_tiles", global_position.x, global_position.y-dig_width, global_position.x+dig_depth, global_position.y+dig_width, pickaxe_strengh)
+			90: emit_signal("clear_tiles", global_position.x-dig_width, global_position.y-dig_depth, global_position.x+dig_width, global_position.y, pickaxe_strengh)
+			180: emit_signal("clear_tiles", global_position.x-dig_depth, global_position.y-dig_width, global_position.x, global_position.y+dig_width, pickaxe_strengh)
+			270: emit_signal("clear_tiles", global_position.x-dig_width, global_position.y, global_position.x+dig_width, global_position.y+dig_depth, pickaxe_strengh) 
 
 
 
