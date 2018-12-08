@@ -1,9 +1,11 @@
-extends Grid.gd
-
 var Grid = load('res://Class/Grid.gd')
 
+var grid
 
-func clean_grid(grid):
+func _init(width, height, defaultTile):
+	self.grid = create_grid(width, height, defaultTile)
+
+func clean_grid():
 	var check = false
 	while !check:
 		check = true
@@ -20,21 +22,19 @@ func clean_grid(grid):
 				if points >= 3 and grid.get(x,y) == -1:
 					grid.set(x,y,choose([grid.get(x+1,y), grid.get(x-1,y), grid.get(x,y-1), grid.get(x,y+1)]))
 					check = false
-	return grid
 	
 	
 func create_grid(width, height, tile):
 	return Grid.new(width, height, tile)
 	
 
-func draw_to_tilemap(grid, tilemap):
+func draw_to_tilemap(tilemap):
 	for y in range(0, grid.height):
 		for x in range(0, grid.width):
 			tilemap.set_cell(x,y, grid.get(x,y))
-	pass
 	
 	
-func create_caves(grid, caves):
+func create_caves(caves):
 	var height = grid.height
 	var width = grid.width
 	for c in range(caves):
@@ -44,7 +44,6 @@ func create_caves(grid, caves):
 			worm.pos.y += round(rand_range(-1,1))
 			worm.size += round(rand_range(-1,1))
 			grid.set_circle(worm.pos.x, worm.pos.y, worm.size, -1)
-	return grid
 	
 func choose(array):
 	for item in array:

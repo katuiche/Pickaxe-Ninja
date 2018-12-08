@@ -1,4 +1,6 @@
-extends "res://Scripts/LevelGenerator/BaseFunctions.gd"
+extends Node2D
+
+var Generator = load('res://Scripts/LevelGenerator/Generator.gd')
 
 onready var tilemap = $GameTileMap
 onready var background = $Background
@@ -13,8 +15,8 @@ func _ready():
 	pass
 
 func generate():
-	var grid = create_grid(map_width,map_height,1)
-	grid = create_caves(grid, 20)
-	grid = clean_grid(grid)
-	draw_to_tilemap(grid, tilemap)
-	pass
+	var generator = Generator.new(map_width,map_height,2)
+	generator.create_caves(20)
+	generator.clean_grid()
+	generator.draw_to_tilemap(tilemap)
+	

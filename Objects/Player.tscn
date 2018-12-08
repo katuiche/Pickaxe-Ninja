@@ -1,11 +1,12 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/PickAxe.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/temp_pickaxe.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/Player_walk.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Player/Player_shee2t.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/light.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/PlayerCamera.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -227,15 +228,20 @@ tracks/1/keys = {
 "values": [ Rect2( 0, 0, 32, 32 ), Rect2( 32, 0, 32, 32 ), Rect2( 64, 0, 32, 32 ), Rect2( 96, 0, 32, 32 ), Rect2( 128, 0, 32, 32 ), Rect2( 160, 0, 32, 32 ), Rect2( 192, 0, 32, 32 ), Rect2( 224, 0, 32, 32 ) ]
 }
 
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
 [node name="Player" type="KinematicBody2D" index="0"]
 
 position = Vector2( 344.314, 345.247 )
 input_pickable = false
-collision_layer = 1
+collision_layer = 3
 collision_mask = 1
 collision/safe_margin = 0.02
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform", "collision" ]
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -324,23 +330,54 @@ smoothing_enabled = false
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
-drag_margin_left = 0.13
-drag_margin_top = 0.13
-drag_margin_right = 0.06
-drag_margin_bottom = 0.13
+drag_margin_left = 0.04
+drag_margin_top = 0.04
+drag_margin_right = 0.04
+drag_margin_bottom = 0.04
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource( 6 )
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
 
+[node name="LeftBorder" type="StaticBody2D" parent="Camera2D" index="0"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LeftBorder" index="0"]
+
+shape = SubResource( 9 )
+
+[node name="RightBorder" type="StaticBody2D" parent="Camera2D" index="1"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/RightBorder" index="0"]
+
+shape = SubResource( 9 )
+
 [node name="Lantern" type="Light2D" parent="." index="5"]
 
 enabled = true
 editor_only = false
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 offset = Vector2( 0, 0 )
 texture_scale = 1.0
 color = Color( 0.902344, 0.68557, 0.0352478, 1 )
