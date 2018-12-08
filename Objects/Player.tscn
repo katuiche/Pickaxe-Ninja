@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/PlayerScript.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/PickAxe.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/temp_pickaxe.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player/Player_walk.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Player/Player_shee2t.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/light.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -260,10 +261,12 @@ stand_angle = 50
 
 [node name="PickaxeSprite" type="Sprite" parent="PickAxe" index="0"]
 
-position = Vector2( 4, 3 )
+position = Vector2( 1, -1.72853e-006 )
+rotation = 1.5708
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
+offset = Vector2( 0, -40 )
+_sections_unfolded = [ "Offset", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -332,6 +335,30 @@ _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Transform" ]
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Lantern" type="Light2D" parent="." index="5"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 6 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 0.902344, 0.68557, 0.0352478, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = false
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
 
 [connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_PlayerAnimation_animation_finished"]
 

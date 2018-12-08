@@ -23,9 +23,9 @@ func _process(delta):
 	pass
 
 func get_level(depth):
-	if depth < 5000:
+	if depth < Global.levels_depth.level_1:
 		return level_intro
-	elif depth < 99999999999:
+	else:
 		return level_1
 
 func load_level(load_level):
@@ -34,12 +34,13 @@ func load_level(load_level):
 		level_obj = level_intro.instance()
 	elif load_level == level_1:
 		level_obj = level_1.instance()
-		level_obj.position = Vector2(0, 5100)
+		level_obj.position = Vector2(0, Global.levels_depth.level_1 + 200)
 	if current_level != null:
+		player.disconnect("clear_tiles", current_level.get_node('GameTileMap'), "_on_clear_tiles")
 		current_level.free()
 	current_level_name = load_level
 	current_level = level_obj
 	
-	current_level.get_node('GameTileMap').connect("clear_tiles", player, "_on_clear_tiles")
+	player.connect("clear_tiles", current_level.get_node('GameTileMap'), "_on_clear_tiles")
 	
 	add_child(level_obj)

@@ -1,33 +1,25 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Level1.gd" type="Script" id=1]
-[ext_resource path="res://TileSets/GroundTileSet.tres" type="TileSet" id=2]
-[ext_resource path="res://Scenes/Levels/GameTileMap.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/LevelGenerator/Level1.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/tile.png" type="Texture" id=2]
+[ext_resource path="res://Objects/GameTileMap.tscn" type="PackedScene" id=3]
 
 [node name="Level1" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+map_width = 200
+map_height = 200
 
-[node name="GameTileMap" type="TileMap" parent="." index="0"]
+[node name="Background" type="Sprite" parent="." index="0"]
 
-mode = 0
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 16, 16 )
-cell_quadrant_size = 16
-cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-cell_half_offset = 2
-cell_tile_origin = 0
-cell_y_sort = false
-cell_clip_uv = false
-collision_use_kinematic = false
-collision_friction = 1.0
-collision_bounce = 0.0
-collision_layer = 1
-collision_mask = 1
-occluder_light_mask = 1
-format = 1
-tile_data = PoolIntArray( 983016, 2, 0, 983017, 2, 0, 983018, 2, 0, 983019, 2, 0, 983020, 2, 0, 983021, 2, 0, 983022, 2, 0, 983023, 2, 0, 983024, 2, 0, 983025, 2, 0, 983026, 2, 0, 983027, 2, 0, 983028, 2, 0, 983029, 2, 0, 983030, 2, 0, 983031, 2, 0, 983032, 2, 0, 983033, 2, 0, 983034, 2, 0, 983035, 2, 0, 983036, 2, 0, 983037, 2, 0, 983038, 2, 0, 917511, 2, 0, 917512, 2, 0, 917513, 2, 0, 917514, 2, 0, 917515, 2, 0, 917516, 2, 0, 917517, 2, 0, 917518, 2, 0, 917519, 2, 0, 917520, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0, 917525, 2, 0, 917526, 2, 0, 1048550, 2, 0, 1048551, 2, 0, 1048575, 2, 0, 983040, 2, 0, 983041, 2, 0, 983042, 2, 0, 983043, 2, 0, 983044, 2, 0, 983045, 2, 0, 983046, 2, 0, 983063, 2, 0, 1048579, 2, 0, 1048580, 2, 0, 1048599, 2, 0, 1114117, 2, 0, 1114118, 2, 0, 1114119, 2, 0, 1114120, 2, 0, 1114121, 2, 0, 1114122, 2, 0, 1114123, 2, 0, 1114135, 2, 0, 1179660, 2, 0, 1179661, 2, 0, 1179662, 2, 0, 1179663, 2, 0, 1179664, 2, 0, 1179665, 2, 0, 1179666, 2, 0, 1179667, 2, 0, 1179668, 2, 0, 1179669, 2, 0, 1179670, 2, 0, 1179671, 2, 0 )
-script = ExtResource( 3 )
-_sections_unfolded = [ "Cell" ]
+z_index = -2708
+z_as_relative = false
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 64 )
+_sections_unfolded = [ "Offset", "Region", "Z Index" ]
+
+[node name="GameTileMap" parent="." index="1" instance=ExtResource( 3 )]
 
 

@@ -14,6 +14,7 @@ export (int, 1, 5) var pickaxe_strengh
 onready var anim_player = $PlayerAnimation
 onready var sprite = $PlayerSprite
 onready var pickaxe = $PickAxe
+onready var lantern = $Lantern
 
 signal clear_tiles(pos_x1, pos_y1, pos_x2, pos_y2)
  
@@ -34,7 +35,9 @@ func _ready():
 func _physics_process(delta):
 	movement()
 	dig()
-	
+	lantern.enabled = have_pickaxe
+	if randi()%100+1 > 99:
+		lantern.enabled = false
 	
 	
 	
@@ -132,6 +135,9 @@ func dig():
 			direction = 270
 		elif sprite.flip_h:
 			direction = 180
+				
+			
+		pickaxe.swing(direction)
 			
 		match direction:
 			0: emit_signal("clear_tiles", global_position.x, global_position.y-dig_width, global_position.x+dig_depth, global_position.y+dig_width, pickaxe_strengh)
