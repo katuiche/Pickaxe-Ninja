@@ -8,7 +8,7 @@
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." index="1"]
 
-color = Color( 1, 0.996094, 0.996094, 1 )
+color = Color( 0, 0, 0, 1 )
 _sections_unfolded = [ "Visibility" ]
 
 

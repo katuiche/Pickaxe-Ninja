@@ -167,6 +167,8 @@ func generateTable(var _seed):
 	for i in range(256):
 		gx.append(2.0 * randf() - 1.0)
 		gy.append(2.0 * randf() - 1.0)
+		#gx.append(2.0 - simple_noise1d(_seed * i) - 1.0)
+		#gy.append(2.0 - simple_noise1d(_seed * i) - 1.0)
 
 func perlin_noise2d(var x, var y):
 	#Compute the integer positions of the four surrounding points

@@ -11,7 +11,7 @@ export (int, 10, 1000) var map_height
 func _ready():
 	generate()
 	background.region_rect.size.x = map_width * tilemap.cell_size.x
-	background.region_rect.size.y = map_height * tilemap.cell_size.y
+	background.region_rect.size.y = map_height * tilemap.cell_size.y + 500
 	pass
 
 func generate():
@@ -19,7 +19,7 @@ func generate():
 	var step_number = 50
 	var step_size = (map_height)/step_number
 	for c in step_number:
-		generator.create_cave_perlin_worm(round(rand_range(200,400)), round(c * step_size))
+		generator.create_cave_perlin_worm(500, round(c * step_size))
 	generator.clean_grid()
 	generator.draw_to_tilemap(tilemap)
 	
