@@ -233,7 +233,7 @@ tracks/1/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 position = Vector2( 344.314, 345.247 )
 input_pickable = false
@@ -321,7 +321,7 @@ current = true
 zoom = Vector2( 0.8, 0.8 )
 limit_left = 0
 limit_top = -36398080
-limit_right = 5000
+limit_right = 2400
 limit_bottom = 10000000
 limit_smoothed = true
 drag_margin_h_enabled = true
@@ -375,6 +375,7 @@ shape = SubResource( 9 )
 
 [node name="Lantern" type="Light2D" parent="." index="5"]
 
+scale = Vector2( 2, 2 )
 enabled = true
 editor_only = false
 texture = ExtResource( 7 )
@@ -396,6 +397,7 @@ shadow_gradient_length = 0.0
 shadow_filter = 0
 shadow_filter_smooth = 0.0
 shadow_item_cull_mask = 1
+_sections_unfolded = [ "Range", "Shadow", "Transform" ]
 
 [connection signal="animation_finished" from="PlayerAnimation" to="." method="_on_PlayerAnimation_animation_finished"]
 

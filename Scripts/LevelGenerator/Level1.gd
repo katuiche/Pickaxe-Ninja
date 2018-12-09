@@ -5,8 +5,8 @@ var Generator = load('res://Scripts/LevelGenerator/Generator.gd')
 onready var tilemap = $GameTileMap
 onready var background = $Background
 
-export (int, 10, 500) var map_width
-export (int, 10, 500) var map_height
+export (int, 10, 1000) var map_width
+export (int, 10, 1000) var map_height
 
 func _ready():
 	generate()
@@ -16,7 +16,9 @@ func _ready():
 
 func generate():
 	var generator = Generator.new(map_width,map_height,2)
-	generator.create_caves(20)
+	#generator.create_cave_perlin(0)
+	for c in 50:
+		generator.create_cave_perlin_worm(round(rand_range(500,1000)))
 	generator.clean_grid()
 	generator.draw_to_tilemap(tilemap)
 	

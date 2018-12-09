@@ -4,11 +4,11 @@
 [ext_resource path="res://Sprites/tile.png" type="Texture" id=2]
 [ext_resource path="res://Objects/GameTileMap.tscn" type="PackedScene" id=3]
 
-[node name="Level1" type="Node2D" index="0"]
+[node name="Level1" type="Node2D"]
 
 script = ExtResource( 1 )
-map_width = 200
-map_height = 200
+map_width = 150
+map_height = 500
 
 [node name="Background" type="Sprite" parent="." index="0"]
 

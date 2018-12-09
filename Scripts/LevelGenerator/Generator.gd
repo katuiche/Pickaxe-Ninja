@@ -1,5 +1,7 @@
 var Grid = load('res://Class/Grid.gd')
 
+var Perlin = load('res://Class/Softnoise.gd')
+
 var grid
 
 func _init(width, height, defaultTile):
@@ -34,16 +36,34 @@ func draw_to_tilemap(tilemap):
 			tilemap.set_cell(x,y, grid.get(x,y))
 	
 	
-func create_caves(caves):
+func create_cave_worms():
 	var height = grid.height
 	var width = grid.width
-	for c in range(caves):
-		var worm = {pos = Vector2(round(rand_range(0,width)),round(rand_range(0,height))), size = round(rand_range(3,5))}
-		for d in range(rand_range(1,10)):
-			worm.pos.x += round(rand_range(-2,2))
-			worm.pos.y += round(rand_range(-1,1))
-			worm.size += round(rand_range(-1,1))
-			grid.set_circle(worm.pos.x, worm.pos.y, worm.size, -1)
+	var worm = {pos = Vector2(round(rand_range(0,width)),round(rand_range(0,height))), size = round(rand_range(3,5))}
+	for d in range(rand_range(1,10)):
+		worm.pos.x += round(rand_range(-2,2))
+		worm.pos.y += round(rand_range(-1,1))
+		worm.size += round(rand_range(-1,1))
+		grid.set_circle(worm.pos.x, worm.pos.y, worm.size, -1)
+			
+func create_cave_perlin(caves):
+	var perlin = Perlin.new()
+	for y in grid.height:
+		for x in grid.width:
+			var p = perlin.perlin_noise2d(x, y)
+			if p > caves:
+				grid.set(x,y,-1)
+				
+func create_cave_perlin_worm(segments):
+	var perlin = Perlin.new()
+	var pos = Vector2(round(rand_range(0, grid.width)), round(rand_range(0, grid.height)))
+	var size = round(rand_range(0, 3))
+	for c in segments:
+		var angle = perlin.simple_noise2d(c/10, 659) * 360
+		
+		pos.x += sin(angle)
+		pos.y += cos(angle)
+		grid.set_circle(round(pos.x), round(pos.y), size, -1)
 	
 func choose(array):
 	for item in array:

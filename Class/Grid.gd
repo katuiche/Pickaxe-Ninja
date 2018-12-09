@@ -37,7 +37,7 @@ func _create_grid(width, height, value = null):
 func set_circle(x, y, r, value):
 	for yy in range(y - (r + 1), y + (r + 1)):
 		for xx in range(x - (r + 1), x + (r + 1)):
-			if ((xx - x) * (xx - x) + (yy - y) * (yy - y)) <= r * r and xx < width and yy < width and xx >= 0 and yy >= 0 :
+			if ((xx - x) * (xx - x) + (yy - y) * (yy - y)) <= r * r and xx < width and yy < height and xx >= 0 and yy >= 0 :
 				array[yy][xx] = value
 				
 func set_rectangle(x1, y1, x2, y2, value):
