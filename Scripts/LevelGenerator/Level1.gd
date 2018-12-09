@@ -16,9 +16,10 @@ func _ready():
 
 func generate():
 	var generator = Generator.new(map_width,map_height,2)
-	#generator.create_cave_perlin(0)
-	for c in 50:
-		generator.create_cave_perlin_worm(round(rand_range(500,1000)))
+	var step_number = 50
+	var step_size = (map_height)/step_number
+	for c in step_number:
+		generator.create_cave_perlin_worm(round(rand_range(200,400)), round(c * step_size))
 	generator.clean_grid()
 	generator.draw_to_tilemap(tilemap)
 	

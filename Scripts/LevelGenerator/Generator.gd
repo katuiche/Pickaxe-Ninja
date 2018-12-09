@@ -54,15 +54,24 @@ func create_cave_perlin(caves):
 			if p > caves:
 				grid.set(x,y,-1)
 				
-func create_cave_perlin_worm(segments):
+func create_cave_perlin_worm(segments, y = 0):
 	var perlin = Perlin.new()
 	var pos = Vector2(round(rand_range(0, grid.width)), round(rand_range(0, grid.height)))
-	var size = round(rand_range(0, 3))
+	if y != 0:
+		pos.y = y
+	var size = round(rand_range(2, 4))
 	for c in segments:
 		var angle = perlin.simple_noise2d(c/10, 659) * 360
 		
 		pos.x += sin(angle)
 		pos.y += cos(angle)
+		
+		if pos.x < 0:
+			pos.x = grid.width
+			
+		if pos.x > grid.width:
+			pos.x = 0
+		
 		grid.set_circle(round(pos.x), round(pos.y), size, -1)
 	
 func choose(array):
